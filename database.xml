@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<foodDatabase>
+	
+	<baghistory>
+
+		<bag id="1">
+
+			<items>
+				
+				<fruitItem>red apple</fruitItem>
+				<vegetableItem>salsify</vegetableItem>
+				<vegetableItem>garlic</vegetableItem>
+				<vegetableItem>spinach</vegetableItem>
+				<vegetableItem>zucchini</vegetableItem>
+
+			</items>
+
+		</bag>
+
+	</baghistory>
+
+	<food>
+		
+		<vegetables>
+			
+			<!-- "REGULAR" VEGETABLES -->
+
+			<vegetable>
+				<name>zucchini</name>
+				<pieces>1</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				
+				<oftenUsed>yes</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>eggplant</name>
+				<pieces>1</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>PURPLE</color>
+				<perishability>NORMAL</perishability>
+				
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>spinach</name>
+				<pieces>1</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>chayote</name>
+				<pieces>1</pieces>
+				<price>1.20</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>WORLDWIDE</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>yuca</name>
+				<pieces>1</pieces>
+				<price>1.20</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>WORLDWIDE</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BROWN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<!-- OFTEN USED VEGETABLES -->
+
+			<vegetable>
+				<name>garlic</name>
+				<pieces>3</pieces>
+				<price>0.50</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>WHITE</color>
+				<perishability>SLOW</perishability>
+				
+				<oftenUsed>yes</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>onion</name>
+				<pieces>10</pieces>
+				<price>0.50</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>WHITE</color>
+				<perishability>SLOW</perishability>
+				
+				<oftenUsed>yes</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>potato</name>
+				<pieces>10</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>YELLOW</color>
+				<perishability>SLOW</perishability>
+				
+				<oftenUsed>yes</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+			
+			<!-- FORGOTTEN VEGETABLES -->
+
+			<vegetable>
+				<name>salsify</name>
+				<pieces>10</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>no</easyToPrepare>
+				<color>BROWN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>yes</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>black carrot</name>
+				<pieces>5</pieces>
+				<price>0.90</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BLACK</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>yes</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>black radish</name>
+				<pieces>3</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BLACK</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>yes</forgotten>
+			</vegetable>
+
+		</vegetables>
+
+		<fruits>
+			
+			<!-- REGIONAL FRUITS -->
+			
+			<fruit>
+				<name>red apple</name>
+				<pieces>5</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>RED</color>
+				<perishability>NORMAL</perishability>
+			</fruit>
+
+			<fruit>
+				<name>green apple</name>
+				<pieces>5</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+			</fruit>
+	
+			<!-- NON-REGIONAL FRUITS -->
+
+			<fruit>
+				<name>banana</name>
+				<pieces>5</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>WORLDWIDE</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>YELLOW</color>
+				<perishability>FAST</perishability>
+			</fruit>
+
+			<fruit>
+				<name>orange</name>
+				<pieces>5</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>WORLDWIDE</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>ORANGE</color>
+				<perishability>NORMAL</perishability>
+			</fruit>
+
+		</fruits>
+
+	</food>
+
+</foodDatabase>
