@@ -34,3 +34,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# sublime text 2 (Michael)
+*.sublime-workspace
+*.sublime-project
