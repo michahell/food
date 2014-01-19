@@ -25,9 +25,6 @@ def generate_all_possible_bags(): # generate all the possible bags of 4 vegetabl
 		else:
 			print "The item category is not recognized"
 	
-#	vegetables=["tomato", "carot", "cucumber","salad","garlic","onion"] # TODO: remove these arrays
-#	fruits=["mango","apple","melon"] # TODO: same
-	
 	### Generate all the possible crates with 4 vegetables and 1 fruit
 
 	bags=[]
@@ -108,3 +105,26 @@ def get_seasonal_products_count(bag):
 		if is_seasonal(product):
 			number+=1
 	return number
+
+def get_all_fruits():
+	return ["banana", "red apple", "green apple", "orange"]
+
+def get_all_vegetables():
+	return ["tomato", "carrot", "cucumber", "green salad", "garlic", "onion", "salsify", "eggplant"]
+
+def get_previous_bag():
+	return [
+		['banana', 'fruit', 0.8, 5],
+		['eggplant', 'vegetable', 0.8, 1],
+		['zucchini', 'vegetable', 0.8, 1],
+		['garlic', 'vegetable', 0.8, 1],
+		['salsify', 'vegetable', 0.8, 1]
+	]
+
+def is_seasonal(item):
+	return item.is_seasonal
+
+
+
+
+

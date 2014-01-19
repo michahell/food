@@ -6,7 +6,7 @@
 
 		<bag id="1">
 
-			<items>
+			<foodItems>
 				
 				<fruitItem>red apple</fruitItem>
 				<vegetableItem>salsify</vegetableItem>
@@ -14,7 +14,7 @@
 				<vegetableItem>spinach</vegetableItem>
 				<vegetableItem>zucchini</vegetableItem>
 
-			</items>
+			</foodItems>
 
 		</bag>
 
