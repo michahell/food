@@ -4,32 +4,18 @@ Emanuele Crosato
 Michael Trouw
 '''
 
-import optparse
-import xml.etree.ElementTree as ET
+execfile('functions.py')
 
+bags=generate_all_possible_bags() # generate all the possible bags of 4 vegetables and 1 fruit which don't contain items from the previous week
+bags=apply_compulsory(bags) # apply the compulsory rules to filter the invalid bags
+bags=apply_selection(bags) # apply the selection rules to filter the bags further if possible
+bags=apply_preferences(bags) # apply the preference rules to order the bag collection
 
-'''
-TODO:
-
-Find and use XML library or python default if possible
-
-- convert all XML data into temp. python dict objects for use in script
-- find out how to write to xml database
-
-- function to generate all possible bags
-- function (general) to apply a rule
-
-'''
-
-
-'''
-PSEUDO CODE:
-'''
-
-
+"""
 parser = optparse.OptionParser()
 parser.add_option("-t", help="some help text")
 
 (option, args) = parser.parse_args()
 
 print "t = " + str(option.t)
+"""
