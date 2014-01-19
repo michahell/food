@@ -10,12 +10,6 @@ class Bag(object):
         self.price = 0
         self.num_items = 0
 
-    def getPrice(self):
-        return self.price
-
-    def getNumItems(self):
-        return self.num_items
-
     def __str__(self):
         return "i am a bag, yay. my price is: " % (self.price, self.num_items)
 
