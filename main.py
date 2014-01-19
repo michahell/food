@@ -4,7 +4,7 @@ Emanuele Crosato
 Michael Trouw
 '''
 
-execfile('parser.py')
+execfile('json_parser.py')
 execfile('functions.py')
 
 # parser = optparse.OptionParser()

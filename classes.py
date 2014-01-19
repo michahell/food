@@ -36,7 +36,7 @@ class OrganicThing(object):
         self.forgotten = ''
 
     def __str__(self):
-        return "organic thing, %s, %s, %s, %s" % (self.name, self.category, self.price, self.piece_size)
+        return "organic thing, %s, %s, %s, %s" % (self.category, self.name, self.price, self.pieces)
 
 
 
