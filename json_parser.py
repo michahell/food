@@ -33,25 +33,11 @@ def create_organic_things(ot_type, data):
 json_data = open('data.json').read()
 db = json.loads(json_data)
 
-fruits = create_organic_things('fruit', db['foodDatabase']['food']['fruits']['fruit'])
-vegetables = create_organic_things('vegetable', db['foodDatabase']['food']['vegetables']['vegetable'])
-previous_bags = create_previous_bags(db['foodDatabase']['baghistory'])
+# previous_bags = create_previous_bags(db['foodDatabase']['baghistory'])
 
-# debug shizzle
+def get_all_fruits():
+	return create_organic_things('fruit', db['foodDatabase']['food']['fruits']['fruit'])
 
-for fruit in fruits:
-	print str(fruit)
-
-print '\n'
-
-for vegetable in vegetables:
-	print str(vegetable)
-
-print '\n'
-
-for previous_bag in previous_bags:
-	print str(previous_bag)
-
-print '\n'
-
+def get_all_vegetables():
+	return create_organic_things('vegetable', db['foodDatabase']['food']['vegetables']['vegetable'])
 
