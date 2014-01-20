@@ -30,7 +30,9 @@ class OrganicThing(object):
         self.forgotten = ''
 
     def __str__(self):
-        return "organic thing, %s, %s, %s, %s" % (self.category, self.name, self.price, self.pieces)
+        return "%s: %s, %s, %s, %s, %s, %s, %s, %s, %s, %s." % (self.category, self.name, self.price, self.pieces, \
+        self.seasons, self.origin, self.easyToPrepare, self.color, self.perishability, self.oftenUsed, self.forgotten)
+
 
 
 
