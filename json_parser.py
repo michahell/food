@@ -35,6 +35,7 @@ db = json.loads(json_data)
 
 fruits = create_organic_things('fruit', db['foodDatabase']['food']['fruits']['fruit'])
 vegetables = create_organic_things('vegetable', db['foodDatabase']['food']['vegetables']['vegetable'])
+
 previous_bag = create_previous_bags(db['foodDatabase']['baghistory'])
 
 # for fruit in fruits:
