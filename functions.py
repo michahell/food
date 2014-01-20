@@ -6,7 +6,7 @@ Michael Trouw
 
 import itertools
 
-#execfile('xml.py')
+execfile('databaseInterface.py')
 
 number_of_products = 5
 
