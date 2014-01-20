@@ -110,15 +110,6 @@ def get_seasonal_products_count(bag):
 			number += 1
 	return number
 
-def get_all_fruits():
-	return fruits
-
-def get_all_vegetables():
-	return vegetables
-
-def get_previous_bag():
-	return previous_bag
-
 def is_seasonal(item):
 	return item.is_seasonal
 

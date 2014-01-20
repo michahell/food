@@ -6,3 +6,12 @@ def objectify(database_path)
 	my_obj = eval(json.dumps(o))
 	return my_obj
 	
+
+def get_all_fruits():
+	return fruits
+
+def get_all_vegetables():
+	return vegetables
+
+def get_previous_bag():
+	return previous_bag
