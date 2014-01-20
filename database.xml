@@ -4,7 +4,25 @@
 	
 	<baghistory>
 
+		<bag id="2">
+
+			<price>4.90</price>
+
+			<foodItems>
+				
+				<fruitItem>banana</fruitItem>
+				<vegetableItem>salsify</vegetableItem>
+				<vegetableItem>garlic</vegetableItem>
+				<vegetableItem>spinach</vegetableItem>
+				<vegetableItem>zucchini</vegetableItem>
+
+			</foodItems>
+
+		</bag>
+
 		<bag id="1">
+
+			<price>4.70</price>
 
 			<foodItems>
 				

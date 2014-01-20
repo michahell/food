@@ -8,7 +8,8 @@ class Bag(object):
 
     def __init__(self):
         self.price = 0
-        self.num_items = 0
+        self.fruit = ''
+        self.vegetables = []
 
     def __str__(self):
         return "i am a bag, yay. my price is: " % (self.price, self.num_items)
