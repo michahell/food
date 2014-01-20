@@ -33,7 +33,6 @@ def create_organic_things(ot_type, data):
 json_data = open('data.json').read()
 db = json.loads(json_data)
 
-# previous_bags = create_previous_bags(db['foodDatabase']['baghistory'])
 
 def get_all_fruits():
 	return create_organic_things('fruit', db['foodDatabase']['food']['fruits']['fruit'])

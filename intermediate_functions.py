@@ -1,11 +1,10 @@
 
 import time
 
-
 def get_price(product):
 	return float(product.price)
 
-def is_seasonal(product):
+def is_seasonal(product): # returns -> boolean
 	seasonal = False
 	# if the product has 4 seasons it is by definition not seasonal!
 	if len(product.seasons) < 4:
@@ -28,14 +27,22 @@ def is_seasonal(product):
 
 	return seasonal
 
-def is_forgotten(product):
-	return 1 if product.forgotten == 'yes' else 0
+def is_forgotten(product): # returns -> int ( 0 / 1 )
+	forgotten = 1 if product.forgotten is True else 0
+	return forgotten 					
 
-def get_color(product):
+def get_color(product): # returns -> string
 	return product.color
 
-# get_perishability(product) -> int/string
-# get_locality(product) -> int/string
-# get_easy_to_cook(product) -> int/string
-# get_piece_size(product) ->int/string
-# get_color(product) -> string
+def get_perishability(product): # returns -> string
+	return product.perishability
+
+def get_locality(product): # returns -> string
+	return product.origin
+
+def get_easy_to_cook(product): # returns -> boolean
+	return product.easyToPrepare
+
+def get_piece_size(product): # returns -> int
+	return product.pieces
+
