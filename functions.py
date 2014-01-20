@@ -6,7 +6,8 @@ Michael Trouw
 
 import itertools
 
-execfile('databaseInterface.py')
+execfile('json_parser.py')
+execfile('intermediate_functions.py')
 
 number_of_products = 5
 
@@ -16,14 +17,14 @@ def generate_all_possible_bags(): # generate all the possible bags of 4 vegetabl
 
 	fruits = get_all_fruits()
 	vegetables = get_all_vegetables()
-	last_bag = get_previous_bag()
-	for item in last_bag: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
-		if item.category == 'Fruit':
-			fruits.remove(item)
-		elif item.category == 'Vegetable':
-			vegetables.remove(item)
-		else:
-			print "The item category is not recognized"
+#	last_bag = get_previous_bag()
+#	for item in last_bag: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
+#		if item.category == 'Fruit':
+#			fruits.remove(item)
+#		elif item.category == 'Vegetable':
+#			vegetables.remove(item)
+#		else:
+#			print "The item category is not recognized"
 	
 	### Generate all the possible crates with 4 vegetables and 1 fruit
 
@@ -34,17 +35,16 @@ def generate_all_possible_bags(): # generate all the possible bags of 4 vegetabl
 			newbag = [f]
 			for product in vc:
 				newbag.append(product)
-#			newbag.append(f)
 			bags.append(newbag)
 	return bags
 
 ##############################################################################################################
 
 def apply_compulsory(bags): # apply the compulsory rules to filter the invalid bags
-	for b in bags: # check the price constraint
-		price = get_price(b)
+	for bag in bags: # check the price constraint
+		price = get_bag_price(bag)
 		if price > 5 or price < 4:
-			bags.remove(b)
+			bags.remove(bag)
 	return bags
 
 ##############################################################################################################
@@ -71,14 +71,13 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 		count += 1
 
 	# Get the new (updated) bags subset
-	new_bags_collection = []
+	new_bags = []
 	overall_max = max(quality_counter)
-	for count in xrange(0,len(bags) - 1):
+	for count in xrange(0,len(bags)):
 		if overall_max - quality_counter[count] < 1.0: # if the bag is sufficiently close to the optimal one, add it to the selected subset
 			new_bags.append(bags[count])
 
 	return new_bags
-
 
 ##############################################################################################################
 
@@ -103,17 +102,41 @@ def apply_preferences(bags): # apply the preference rules to order the bag colle
 
 ##################################### END OF THE MAIN FUNCTIONS ##############################################
 
+def get_bag_price(bag):
+	overall_price=0.0
+	for item in bag:
+		overall_price+=float(get_price(item))
+	return overall_price
+
+def is_forgotten_bag(bag):
+	forgotten_count=0
+	for item in bag:
+		forgotten_count+=is_forgotten(item)
+	if 1<=forgotten_count<=2:
+		return True
+	else:
+		return False
+
 def get_seasonal_products_count(bag):
-	number = 0
-	for product in bag:
+	seasonal_count = 0
+	for item in bag:
 		if is_seasonal(product):
-			number += 1
-	return number
+			seasonal_count += 1
+	return seasonal_count
 
 def is_seasonal(item):
 	return item.is_seasonal
 
 
 
-
-
+bags=generate_all_possible_bags()
+print len(bags)
+bags=apply_compulsory(bags)
+print len(bags)
+bags=apply_selection(bags)
+print len(bags)
+#for b in bags:
+#	s=""
+#	for item in b:
+#		s+=item.name + ","
+#	print s
