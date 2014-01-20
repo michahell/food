@@ -40,7 +40,7 @@ def get_perishability(product): # returns -> string
 def get_locality(product): # returns -> string
 	return product.origin
 
-def get_easy_to_cook(product): # returns -> boolean
+def get_easy_to_cook(product): # returns -> int
 	return product.easyToPrepare
 
 def get_piece_size(product): # returns -> int
