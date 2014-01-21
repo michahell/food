@@ -53,29 +53,41 @@ def apply_compulsory(bags): # apply the compulsory rules to filter the invalid b
 def apply_selection(bags): # apply the selection rules to filter the bags further if possible
 	bags_length=len(bags)
 	quality_counter = [0] * bags_length
-	weight_season = 0.6
-	weight_forget = 0.4
-	
+	weight_often_used = 0.6
+	weight_season = 0.25
+	weight_forget = 0.15
+
 	# Seasonal rule
 	count=0
 	for bag in bags:
 		quality_counter[count] = get_seasonal_products_count(bag) * weight_season
-		count += 1
-	
+		count += 1	
 	maximum=max(quality_counter)
+
+	count=0
+	for bag in bags:
+                quality_counter[count] /= maximum
+                count += 1
+
+	# Often used rule
+	count=0
+        for bag in bags:
+                quality_counter[count] += get_often_used_count(bag) * weight_often_used
+                count += 1
+
 
 	# Forgetfulness rule
 	count=0
 	for bag in bags:
 		if is_forgotten_bag(bag):
-			quality_counter[count] += maximum * weight_forget
+			quality_counter[count] += 1 * weight_forget
 		count += 1
 
 	# Get the new (updated) bags subset
 	new_bags = []
 	overall_max = max(quality_counter)
 	for count in xrange(0,len(bags)):
-		if overall_max - quality_counter[count] < 2.0: # if the bag is sufficiently close to the optimal one, add it to the selected subset
+		if overall_max - quality_counter[count] < 0.4: # if the bag is sufficiently close to the optimal one, add it to the selected subset
 			new_bags.append(bags[count])
 
 	return new_bags
@@ -108,6 +120,17 @@ def get_bag_price(bag):
 	for item in bag:
 		overall_price+=float(get_price(item))
 	return overall_price
+
+def get_often_used_count(bag):
+        often_count = 0
+        for item in bag:
+                if is_often_used(item):
+                        often_count += 1
+        if often_count==1:
+		return 1
+	else:
+		return 1/(1+abs(often_count-1))
+
 
 def is_forgotten_bag(bag):
 	forgotten_count=0

@@ -5,6 +5,10 @@ import time
 def get_price(product):
 	return float(product.price)
 
+def is_often_used(product): # returns -> int ( 0 / 1 )
+	often = 1 if product.oftenUsed is True else 0
+	return often					
+
 def is_seasonal(product): # returns -> boolean
 	seasonal = False
 	# if the product has 4 seasons it is by definition not seasonal!
