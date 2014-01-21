@@ -1,4 +1,4 @@
-
+from operator import itemgetter
 import time
 
 execfile('databaseInterface.py')
@@ -52,3 +52,18 @@ def removeItemByName(name, items):
 	for i in items:
 		if i.name == name:
 			items.remove(i)
+
+def getBestBags(bags, ordering, n):
+	backupBags = list(bags)
+	backupOrdering = list(ordering)
+	best_bags = []
+	for k in range(min(n, len(bags))):
+		index_max = -1
+		maximum = -1
+		for i in range(len(backupOrdering)):
+			if backupOrdering[i] > maximum:
+				maximum = backupOrdering[i]
+				index_max = i
+		best_bags.append(backupBags[index_max])
+		backupBags.remove(backupBags[index_max])
+		backupOrdering.pop(index_max)
