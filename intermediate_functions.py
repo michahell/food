@@ -1,7 +1,8 @@
+<<<<<<< Updated upstream
 from operator import itemgetter
+=======
+>>>>>>> Stashed changes
 import time
-
-execfile('databaseInterface.py')
 
 def get_price(product):
 	return float(product.price)
