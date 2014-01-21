@@ -68,3 +68,4 @@ def getBestBags(bags, ordering, n):
 		best_bags.append(backupBags[index_max])
 		backupBags.remove(backupBags[index_max])
 		backupOrdering.pop(index_max)
+	return best_bags
