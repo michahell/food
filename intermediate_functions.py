@@ -1,6 +1,8 @@
 
 import time
 
+execfile('databaseInterface.py')
+
 def get_price(product):
 	return float(product.price)
 
@@ -46,3 +48,7 @@ def get_easy_to_cook(product): # returns -> int
 def get_piece_size(product): # returns -> int
 	return product.pieces
 
+def removeItemByName(name, items):
+	for i in items:
+		if i.name == name:
+			items.remove(i)
