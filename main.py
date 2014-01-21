@@ -16,6 +16,7 @@ bags=apply_preferences(bags) # apply the preference rules to order the bag colle
 print "Ordered set of optimal bags:" + str(len(bags))
 for b in bags:
         s=""
-        for item in b:
+        for item in b.vegetables:
                 s+=item.name + ","
+	s+=b.fruit.name
         print s

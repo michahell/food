@@ -33,9 +33,12 @@ def generate_all_possible_bags(): # generate all the possible bags of 4 vegetabl
 	vegetable_combinations = itertools.combinations(vegetables, 4)
 	for vc in vegetable_combinations:
 		for f in fruits:
-			newbag = [f]
+			newbag=Bag()
+			newbag.fruit=f
+			newbag.vegetables=[]
 			for product in vc:
-				newbag.append(product)
+				newbag.vegetables.append(product)
+			newbag.price=get_bag_price(vc,f)
 			bags.append(newbag)
 	return bags
 
@@ -43,8 +46,7 @@ def generate_all_possible_bags(): # generate all the possible bags of 4 vegetabl
 
 def apply_compulsory(bags): # apply the compulsory rules to filter the invalid bags
 	for bag in bags: # check the price constraint
-		price = get_bag_price(bag)
-		if price > 5 or price < 4:
+		if bag.price > 5 or bag.price < 4:
 			bags.remove(bag)
 	return bags
 
@@ -53,9 +55,9 @@ def apply_compulsory(bags): # apply the compulsory rules to filter the invalid b
 def apply_selection(bags): # apply the selection rules to filter the bags further if possible
 	bags_length=len(bags)
 	quality_counter = [0] * bags_length
-	weight_often_used = 0.6
-	weight_season = 0.25
-	weight_forget = 0.15
+	weight_often_used = 0.5
+	weight_season = 0.3
+	weight_forget = 0.2
 
 	# Seasonal rule
 	count=0
@@ -103,8 +105,9 @@ def apply_preferences(bags): # apply the preference rules to order the bag colle
 
 	# Use the preference rules
 	for bag in bags:
+		
 		ordering_number[count] = \
-		weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag) / 15) + \
+		weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag) / 15 + get_recipe_ingredients_avg(bag) / 5 	) + \
 		weight_medium * (get_easy_to_cook_count(bag) / 5) + \
 		weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
 
@@ -115,17 +118,20 @@ def apply_preferences(bags): # apply the preference rules to order the bag colle
 
 ##################################### END OF THE MAIN FUNCTIONS ##############################################
 
-def get_bag_price(bag):
+def get_bag_price(vegetables,fruit):
 	overall_price=0.0
-	for item in bag:
-		overall_price+=float(get_price(item))
+	for item in vegetables:
+		overall_price+=get_price(item)
+	overall_price+=fruit.price
 	return overall_price
 
 def get_often_used_count(bag):
         often_count = 0
-        for item in bag:
+        for item in bag.vegetables:
                 if is_often_used(item):
                         often_count += 1
+	if is_often_used(bag.fruit):
+		often_count+=1
         if often_count==1:
 		return 1
 	else:
@@ -134,7 +140,7 @@ def get_often_used_count(bag):
 
 def is_forgotten_bag(bag):
 	forgotten_count=0
-	for item in bag:
+	for item in bag.vegetables:
 		forgotten_count+=is_forgotten(item)
 	if 1<=forgotten_count<=2:
 		return True
@@ -143,14 +149,23 @@ def is_forgotten_bag(bag):
 
 def get_seasonal_products_count(bag):
 	seasonal_count = 0
-	for item in bag:
+	for item in bag.vegetables:
 		if is_seasonal(item):
 			seasonal_count += 1
 	return seasonal_count
 
+def get_recipe_ingredients_avg(bag):
+	total=0.0
+	recipes=get_all_recipes()
+	for recipe in recipes:
+		overlap=check_overlapping(bag,recipe)
+		total+=overlap
+	total /= (len(recipes))
+	return total
+
 def get_locality_count(bag):
 	locality_count=0
-	for item in bag:
+	for item in bag.vegetables:
 		loc=get_locality(item)
 		if loc=='REGIONAL':
 			loc_coef=4
@@ -161,11 +176,22 @@ def get_locality_count(bag):
 		else:
 			loc_coef=1
 		locality_count+=loc_coef
+	loc=get_locality(bag.fruit)
+	if loc=='REGIONAL':
+		loc_coef=4
+	elif loc=='NATIONAL':
+		loc_coef=3
+	elif loc=='EUROPEAN':
+		loc_coef=2
+	else:
+		loc_coef=1
+	locality_count+=loc_coef
+
 	return locality_count
 
 def get_perishability_count(bag):
 	perish_count=0
-	for item in bag:
+	for item in bag.vegetables:
 		per=get_perishability(item)
 		if per=='SLOW':
 			per_coef=3
@@ -174,24 +200,38 @@ def get_perishability_count(bag):
 		else: # 'FAST'
 			per_coef=1
 		perish_count+=per_coef
+	per=get_perishability(bag.fruit)
+	if per=='SLOW':
+		per_coef=3
+	elif per=='NORMAL':
+		per_coef=2
+	else: # 'FAST'
+		per_coef=1
+	perish_count+=per_coef
+
 	return perish_count
 
 def get_easy_to_cook_count(bag):
 	easy_count=0
-	for item in bag:
+	for item in bag.vegetables:
 		easy_count+=get_easy_to_cook(item)
+	easy_count+=get_easy_to_cook(bag.fruit)
 	return easy_count
 
 def get_piece_size_count(bag):
 	pieces_count=0
-	for item in bag:
+	for item in bag.vegetables:
 		pieces_count+=int(get_piece_size(item))
+	pieces_count+=int(get_piece_size(bag.fruit))
 	return pieces_count
 
 def get_color_count(bag):
 	colors=[]
-	for item in bag:
+	for item in bag.vegetables:
 		c=get_color(item)
 		if c not in colors:
 			colors.append(c)
+	c=get_color(bag.fruit)
+	if c not in colors:
+		colors.append(c)
 	return len(colors)
