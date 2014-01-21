@@ -6,9 +6,8 @@ Michael Trouw
 
 import itertools
 
-#execfile('json_parser.py')# previous implementation of the db interface
 execfile('databaseInterface.py')
-execfile('intermediate_functions.py')
+execfile('utilities.py')
 
 number_of_products = 5
 best_bags_count=5
@@ -97,7 +96,7 @@ def apply_preferences(bags): # apply the preference rules to order the bag colle
 		weight_medium * (get_easy_to_cook_count(bag) / 5) + \
 		weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
 
-	# Order the bags based on their 'ordering_number' value TODO!!
+	# Order the bags based on their 'ordering_number' value
 	bags = getBestBags(bags, ordering_number, best_bags_count)
 
 	return bags
@@ -157,7 +156,6 @@ def get_perishability_count(bag):
 def get_easy_to_cook_count(bag):
 	easy_count=0
 	for item in bag:
-#		if get_easy_to_cook(item)=='yes':
 		easy_count+=get_easy_to_cook(item)
 	return easy_count
 
@@ -174,20 +172,3 @@ def get_color_count(bag):
 		if c not in colors:
 			colors.append(c)
 	return len(colors)
-
-############### MAIN FUNCTION ##################################################################################
-# TODO: Remove this part later
-
-bags=generate_all_possible_bags()
-print "Initial set of possible bags:" + str(len(bags))
-bags=apply_compulsory(bags)
-print "Set of valid bags: " + str(len(bags))
-bags=apply_selection(bags)
-print "Set of selected bags:" +  str(len(bags))
-bags=apply_preferences(bags)
-print "Ordered set of optimal bags:" + str(len(bags))
-for b in bags:
-	s=""
-	for item in b:
-		s+=item.name + ","
-	print s

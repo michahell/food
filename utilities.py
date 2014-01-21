@@ -1,7 +1,5 @@
-<<<<<<< Updated upstream
 from operator import itemgetter
-=======
->>>>>>> Stashed changes
+
 import time
 
 def get_price(product):
