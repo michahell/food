@@ -1,6 +1,6 @@
 import xmltodict,json,io
 
-from classes import OrganicThing, Bag
+from classes import OrganicThing, Bag, Recipe
 
 def objectifyWholeDB(database_path):
 	fileX = io.open(database_path, 'r')
@@ -67,3 +67,14 @@ def get_previous_bag():
 	bag.vegetables = vegetables
 	return bag
 
+def get_all_recipes():
+	whole = objectifyWholeDB('database.xml')
+	repicesDict = whole['recipes']['recipe']
+	recipes = []
+	for r in repicesDict:
+		new_recipe = Recipe()
+		new_recipe.name = r['name']
+		for ingredient in r['ingredient']:
+			new_recipe.ingredients.append(ingredient)
+		recipes.append(new_recipe)
+	return recipes

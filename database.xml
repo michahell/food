@@ -13,7 +13,7 @@
 				<fruitItem>banana</fruitItem>
 				<vegetableItem>salsify</vegetableItem>
 				<vegetableItem>garlic</vegetableItem>
-				<vegetableItem>spinach</vegetableItem>
+				<vegetableItem>spinaches</vegetableItem>
 				<vegetableItem>zucchini</vegetableItem>
 
 			</foodItems>
@@ -29,7 +29,7 @@
 				<fruitItem>red apple</fruitItem>
 				<vegetableItem>salsify</vegetableItem>
 				<vegetableItem>garlic</vegetableItem>
-				<vegetableItem>spinach</vegetableItem>
+				<vegetableItem>spinaches</vegetableItem>
 				<vegetableItem>zucchini</vegetableItem>
 
 			</foodItems>
@@ -79,7 +79,7 @@
 			</vegetable>
 
 			<vegetable>
-				<name>spinach</name>
+				<name>spinaches</name>
 				<pieces>1</pieces>
 				<price>1.00</price>
 				<seasons>
@@ -126,6 +126,224 @@
 				<forgotten>no</forgotten>
 			</vegetable>
 
+			<vegetable>
+				<name>beans</name>
+				<pieces>1</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BROWN</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>green pepper</name>
+				<pieces>1</pieces>
+				<price>0.50</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>red pepper</name>
+				<pieces>1</pieces>
+				<price>0.50</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>RED</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>tomato</name>
+				<pieces>4</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>RED</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>salad</name>
+				<pieces>1</pieces>
+				<price>0.70</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>mushrooms</name>
+				<pieces>1</pieces>
+				<price>1.30</price>
+				<seasons>
+					<season>AUTUMN</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GRAY</color>
+				<perishability>FAST</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>lenties</name>
+				<pieces>1</pieces>
+				<price>0.80</price>
+				<seasons>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BROWN</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>black olives</name>
+				<pieces>1</pieces>
+				<price>1.10</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>EUROPEAN</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>BLACK</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>green olives</name>
+				<pieces>1</pieces>
+				<price>1.10</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>EUROPEAN</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>jalapeno</name>
+				<pieces>1</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>EUROPEAN</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>RED</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>artichoke</name>
+				<pieces>10</pieces>
+				<price>1.20</price>
+				<seasons>
+					<season>SPRING</season>
+				</seasons>
+				<origin>EUROPEAN</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>WHITE</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>cucumber</name>
+				<pieces>1</pieces>
+				<price>1.00</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>NORMAL</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
+			<vegetable>
+				<name>parsley</name>
+				<pieces>1</pieces>
+				<price>0.70</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+					<season>AUTUMN</season>
+					<season>WINTER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
 			<!-- OFTEN USED VEGETABLES -->
 
 			<vegetable>
@@ -146,7 +364,7 @@
 			</vegetable>
 
 			<vegetable>
-				<name>onion</name>
+				<name>onions</name>
 				<pieces>10</pieces>
 				<price>0.50</price>
 				<seasons>
@@ -304,5 +522,103 @@
 		</fruits>
 
 	</food>
+
+	<recipes>
+
+		<recipe>
+			<name>veggie burger</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>garlic</ingredient>
+			<ingredient>red pepper</ingredient>
+			<ingredient>zucchini</ingredient>
+			<ingredient>onions</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>california burger</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>beans</ingredient>
+			<ingredient>green pepper</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>tomato</ingredient>
+			<ingredient>salad</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>burritos</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>beans</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>red pepper</ingredient>
+			<ingredient>jalapeno</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>spinach quiche</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>garlic</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>spinaches</ingredient>
+			<ingredient>mushrooms</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>soup</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>black carrots</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>garlic</ingredient>
+			<ingredient>tomato</ingredient>
+			<ingredient>lenties</ingredient>
+			<ingredient>spinaches</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>spaghetti squash</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>onions</ingredient>
+			<ingredient>tomato</ingredient>
+			<ingredient>black olives</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>artichoke spinach lasagna</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>onions</ingredient>
+			<ingredient>garlic</ingredient>
+			<ingredient>artichoke</ingredient>
+			<ingredient>spinaches</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>falafel</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>cucumber</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>parsley</ingredient>
+			<ingredient>garlic</ingredient>
+			<ingredient>tomato</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>vegetarial chili</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>onions</ingredient>
+			<ingredient>parsley</ingredient>
+			<ingredient>green pepper</ingredient>
+			<ingredient>black carrot</ingredient>
+			<ingredient>jalapeno</ingredient>
+			<ingredient>garlic</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>zucchini patties</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>onions</ingredient>
+			<ingredient>zucchini</ingredient>
+			<ingredient>tomato</ingredient>
+		</recipe>
+
+	</recipes>
 
 </foodDatabase>

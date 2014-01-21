@@ -35,7 +35,8 @@ class OrganicThing(object):
         self.seasons, self.origin, self.easyToPrepare, self.color, self.perishability, self.oftenUsed, self.forgotten)
 
 
+class Recipe(object):
 
-
-
-
+    def __init__(self):
+        self.name = ''
+        self.ingredients = []
