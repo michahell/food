@@ -22,10 +22,10 @@ def generate_all_possible_bags(bag_type): # generate all the possible bags of 4 
 	if bag_type==0: # if the bag is normal, take into account the previous bag
 		last_bag = get_previous_bag()
 		last_fruit=last_bag.fruit
-		removeItemByName(last_fruit,fruits)
+		removeItemByName(last_fruit.name,fruits)
 		last_vegetables=last_bag.vegetables
 		for item in last_vegetables: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
-			removeItemByName(item,vegetables)
+			removeItemByName(item.name,vegetables)
 	
 	### Generate all the possible crates with 4 vegetables and 1 fruit
 
@@ -89,7 +89,7 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 	new_bags = []
 	overall_max = max(quality_counter)
 	for count in xrange(0,len(bags)):
-		if overall_max - quality_counter[count] < 0.15: # if the bag is sufficiently close to the optimal one, add it to the selected subset
+		if overall_max - quality_counter[count] < 0.2: # if the bag is sufficiently close to the optimal one, add it to the selected subset
 			new_bags.append(bags[count])
 
 	return new_bags
@@ -107,13 +107,13 @@ def apply_preferences(bags,bag_type): # apply the preference rules to order the 
 	if bag_type==0: # normal bag
 		for bag in bags:	
 			ordering_number[count] = \
-			weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag)/15 + get_recipe_ingredients_avg(bag) / 3) + \
+			weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag)/15 + get_recipe_score(bag)) + \
 			weight_medium * (get_easy_to_cook_count(bag) / 5) + \
 			weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
 	else: # christmas bag -> use only recipes, color and pieces
 		for bag in bags:	
 			ordering_number[count] = \
-			weight_high * ( get_xmas_recipe_ingredients_avg(bag) / 3 ) + weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
+			weight_high * ( get_xmas_recipe_score(bag) ) + weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
 
 
 	# Order the bags based on their 'ordering_number' value
@@ -159,24 +159,21 @@ def get_seasonal_products_count(bag):
 			seasonal_count += 1
 	return seasonal_count
 
-def get_recipe_ingredients_avg(bag):
-	total=0.0
-	recipes=get_all_recipes()
-	for recipe in recipes:
-		overlap=check_overlapping(bag,recipe)
-		total+=overlap
-	total /= (len(recipes))
-	return total
+def get_recipe_score(bag):
+	score=0.0
+ 	for veg in bag.vegetables:
+		score+=len(veg.recipes)
+	if score != 0.0:
+		score = 1-1/score
+	return score
 
-def get_xmas_recipe_ingredients_avg(bag):
-	total=0.0
-	recipes=get_all_xmas_recipes()
-	for recipe in recipes:
-		overlap=check_overlapping(bag,recipe)
-		total+=overlap
-	total /= (len(recipes))
-	return total
-
+def get_xmas_recipe_score(bag):
+	score=0.0
+ 	for veg in bag.vegetables:
+		score+=len(veg.xmasRecipes)
+	if score != 0.0:
+		score = 1-1/score
+	return score
 
 def get_locality_count(bag):
 	locality_count=0
