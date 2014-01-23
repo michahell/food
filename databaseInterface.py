@@ -110,3 +110,16 @@ def get_all_recipes():
 			new_recipe.ingredients.append(ingredient)
 		recipes.append(new_recipe)
 	return recipes
+
+def get_all_xmas_recipes():
+	whole = objectifyWholeDB('database.xml')
+	repicesDict = whole['xMasRecipes']['recipe']
+	recipes = []
+	for r in repicesDict:
+		new_recipe = Recipe()
+		new_recipe.name = r['name']
+		new_recipe.description = r['description']
+		for ingredient in r['ingredient']:
+			new_recipe.ingredients.append(ingredient)
+		recipes.append(new_recipe)
+	return recipes

@@ -344,6 +344,22 @@
 				<forgotten>no</forgotten>
 			</vegetable>
 
+			<vegetable>
+				<name>leek</name>
+				<pieces>3</pieces>
+				<price>0.70</price>
+				<seasons>
+					<season>SPRING</season>
+					<season>SUMMER</season>
+				</seasons>
+				<origin>REGIONAL</origin>
+				<easyToPrepare>yes</easyToPrepare>
+				<color>GREEN</color>
+				<perishability>SLOW</perishability>
+				<oftenUsed>no</oftenUsed>
+				<forgotten>no</forgotten>
+			</vegetable>
+
 			<!-- OFTEN USED VEGETABLES -->
 
 			<vegetable>
@@ -620,5 +636,39 @@
 		</recipe>
 
 	</recipes>
+
+	<xMasRecipes>
+
+		<recipe>
+			<name>christmas roast</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>leek</ingredient>
+			<ingredient>green pepper</ingredient>
+			<ingredient>black carrot</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>mushrooms</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>christmas honeycomb</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>garlic</ingredient>
+			<ingredient>onions</ingredient>
+			<ingredient>black carrot</ingredient>
+			<ingredient>jalapeno</ingredient>
+			<ingredient>black olives</ingredient>
+			<ingredient>tomato</ingredient>
+		</recipe>
+
+		<recipe>
+			<name>christmas lasagne</name>
+			<description>we will describe this Owesome dish in the future</description>
+			<ingredient>eggplant</ingredient>
+			<ingredient>garlic</ingredient>
+			<ingredient>jalapeno</ingredient>
+			<ingredient>tomato</ingredient>
+		</recipe>
+
+	</xMasRecipes>
 
 </foodDatabase>
