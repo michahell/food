@@ -14,18 +14,18 @@ best_bags_count=5
 
 ##############################################################################################################
 
-def generate_all_possible_bags(): # generate all the possible bags of 4 vegetables and 1 fruit which don't contain items from the previous week
+def generate_all_possible_bags(bag_type): # generate all the possible bags of 4 vegetables and 1 fruit which don't contain items from the previous week
 
 	fruits = get_all_fruits()
 	vegetables = get_all_vegetables()
-	last_bag = get_previous_bag()
 
-	last_fruit=last_bag.fruit
-	removeItemByName(last_fruit,fruits)
-
-	last_vegetables=last_bag.vegetables
-	for item in last_vegetables: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
-		removeItemByName(item,vegetables)
+	if bag_type==0: # if the bag is normal, take into account the previous bag
+		last_bag = get_previous_bag()
+		last_fruit=last_bag.fruit
+		removeItemByName(last_fruit,fruits)
+		last_vegetables=last_bag.vegetables
+		for item in last_vegetables: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
+			removeItemByName(item,vegetables)
 	
 	### Generate all the possible crates with 4 vegetables and 1 fruit
 
@@ -96,7 +96,7 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 
 ##############################################################################################################
 
-def apply_preferences(bags): # apply the preference rules to order the bag collection
+def apply_preferences(bags,bag_type): # apply the preference rules to order the bag collection
 	ordering_number=[0] * len(bags)
 	weight_high = 0.6
 	weight_medium = 0.25
@@ -104,12 +104,17 @@ def apply_preferences(bags): # apply the preference rules to order the bag colle
 	count=0
 
 	# Use the preference rules
-	for bag in bags:
-		
-		ordering_number[count] = \
-		weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag) / 15 + get_recipe_ingredients_avg(bag) / 5 	) + \
-		weight_medium * (get_easy_to_cook_count(bag) / 5) + \
-		weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
+	if bag_type==0: # normal bag
+		for bag in bags:	
+			ordering_number[count] = \
+			weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag)/15 + get_recipe_ingredients_avg(bag) / 3) + \
+			weight_medium * (get_easy_to_cook_count(bag) / 5) + \
+			weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
+	else: # christmas bag -> use only recipes, color and pieces
+		for bag in bags:	
+			ordering_number[count] = \
+			weight_high * ( get_xmas_recipe_ingredients_avg(bag) / 3 ) + weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
+
 
 	# Order the bags based on their 'ordering_number' value
 	bags = getBestBags(bags, ordering_number, best_bags_count)
@@ -162,6 +167,16 @@ def get_recipe_ingredients_avg(bag):
 		total+=overlap
 	total /= (len(recipes))
 	return total
+
+def get_xmas_recipe_ingredients_avg(bag):
+	total=0.0
+	recipes=get_all_xmas_recipes()
+	for recipe in recipes:
+		overlap=check_overlapping(bag,recipe)
+		total+=overlap
+	total /= (len(recipes))
+	return total
+
 
 def get_locality_count(bag):
 	locality_count=0

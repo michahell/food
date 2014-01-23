@@ -13,9 +13,9 @@ def print_bag(bag):
 	s+=b.fruit.name
 	print s
 
-bag_type=raw_input("\nDear customer, \nWelcome to the f00d KBS. \n\nPlease select the type of bag (enter 1 or 2):\n1 - Normal bag\n2 - Christmas special bag\n")
+bag_type=raw_input("\nDear customer, \nWelcome to the f00d KBS. \n\nPlease select the type of bag (enter 0 or 1):\n0 - Normal bag\n1 - Christmas special bag\n")
 
-
+bag_type=int(bag_type)
 bags=create_configurations(bag_type)
 
 print "Final set of bags:\n"
