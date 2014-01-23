@@ -89,7 +89,7 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 	new_bags = []
 	overall_max = max(quality_counter)
 	for count in xrange(0,len(bags)):
-		if overall_max - quality_counter[count] < 0.4: # if the bag is sufficiently close to the optimal one, add it to the selected subset
+		if overall_max - quality_counter[count] < 0.15: # if the bag is sufficiently close to the optimal one, add it to the selected subset
 			new_bags.append(bags[count])
 
 	return new_bags
