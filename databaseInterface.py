@@ -7,7 +7,17 @@ def objectifyWholeDB(database_path):
 	o = xmltodict.parse(fileX.read())
 	my_obj = eval(json.dumps(o))
 	return my_obj['foodDatabase']
-	
+
+def addRecipes(item):
+	recipes = get_all_recipes()
+	for r in recipes:
+		if item.name in r.ingredients:
+			item.recipes.append(r.name)
+	recipes = get_all_xmas_recipes()
+	for r in recipes:
+		if item.name in r.ingredients:
+			item.xmasRecipes.append(r.name)
+
 def create_vegetable(v):
 	new_vegetable = OrganicThing()
         new_vegetable.name = v['name']
@@ -24,6 +34,7 @@ def create_vegetable(v):
         new_vegetable.perishability = v['perishability']
         new_vegetable.oftenUsed = v['oftenUsed']  == 'yes'
         new_vegetable.forgotten = v['forgotten']  == 'yes'
+        addRecipes(new_vegetable)
 	return new_vegetable
 
 def create_fruit(f):
@@ -42,6 +53,7 @@ def create_fruit(f):
 	new_fruit.perishability = f['perishability']
 	new_fruit.oftenUsed = None
 	new_fruit.forgotten = None
+	addRecipes(new_fruit)
 	return new_fruit
 
 def get_fruit_by_name(strFruit):

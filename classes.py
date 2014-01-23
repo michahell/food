@@ -29,6 +29,8 @@ class OrganicThing(object):
         self.perishability = ''
         self.oftenUsed = ''
         self.forgotten = ''
+        self.recipes = []
+        self.xmasRecipes = []
 
     def __str__(self):
         return "%s: %s, %s, %s, %s, %s, %s, %s, %s, %s, %s." % (self.category, self.name, self.price, self.pieces, \
