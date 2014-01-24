@@ -32,13 +32,6 @@ def is_seasonal(product): # returns -> boolean
 
 	return seasonal
 
-def check_overlapping(bag,recipe):
-	overlap_count=0
-	for item in bag.vegetables:
-		if item in recipe.ingredients:
-			overlap_count+=1
-	return overlap_count		
-
 def is_forgotten(product): # returns -> int ( 0 / 1 )
 	forgotten = 1 if product.forgotten is True else 0
 	return forgotten 					
