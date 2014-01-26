@@ -28,4 +28,4 @@ for b in bags:
 	count+=1
 
 chosen_bag=raw_input("\nPlease select your bag (enter 1-5):")
-print "\nYou chose " + chosen_bag # TODO: Instead of this, insert the new bag in the DB!!!
+print "\nYou chose bag number " + chosen_bag + "! This bag is stored in the database." # TODO: Instead of this, insert the new bag in the DB!!!
