@@ -8,9 +8,9 @@ execfile('controller.py')
 
 def print_bag(bag):
 	s=""
-	for item in b.vegetables:
+	for item in bag.vegetables:
 		s+=item.name + ","
-	s+=b.fruit.name
+	s+=bag.fruit.name
 	print s
 
 bag_type=raw_input("\nDear customer, \nWelcome to the f00d KBS. \n\nPlease select the type of bag (enter 0 or 1):\n0 - Normal bag\n1 - Christmas special bag\n")
@@ -29,3 +29,5 @@ for b in bags:
 
 chosen_bag=raw_input("\nPlease select your bag (enter 1-5):")
 print "\nYou chose bag number " + chosen_bag + "! This bag is stored in the database." # TODO: Instead of this, insert the new bag in the DB!!!
+
+addNewBag(bags[int(chosen_bag)-1])

@@ -6,7 +6,7 @@ def objectifyWholeDB(database_path):
 	fileX = io.open(database_path, 'r')
 	o = xmltodict.parse(fileX.read())
 	my_obj = eval(json.dumps(o))
-	return my_obj['foodDatabase']
+	return my_obj
 
 def addRecipes(item):
 	recipes = get_all_recipes()
@@ -58,7 +58,7 @@ def create_fruit(f):
 
 def get_fruit_by_name(strFruit):
 	whole = objectifyWholeDB('database.xml')
-	fruits = whole['food']['fruits']['fruit']
+	fruits = whole['foodDatabase']['food']['fruits']['fruit']
 	for f in fruits:
 		if f['name'] == strFruit:
 			return f
@@ -66,7 +66,7 @@ def get_fruit_by_name(strFruit):
 
 def get_vegetable_by_name(strVegetable):
 	whole = objectifyWholeDB('database.xml')
-	vegs = whole['food']['vegetables']['vegetable']
+	vegs = whole['foodDatabase']['food']['vegetables']['vegetable']
 	for v in vegs:
 		if v['name'] == strVegetable:
 			return v
@@ -76,7 +76,7 @@ def get_vegetable_by_name(strVegetable):
 
 def get_all_fruits():
 	whole = objectifyWholeDB('database.xml')
-	fruitsDict = whole['food']['fruits']['fruit']
+	fruitsDict = whole['foodDatabase']['food']['fruits']['fruit']
 	fruits = []
 	for f in fruitsDict:
 		new_fruit=create_fruit(f)
@@ -85,7 +85,7 @@ def get_all_fruits():
 
 def get_all_vegetables():
 	whole = objectifyWholeDB('database.xml')
-	vegetablesDict = whole['food']['vegetables']['vegetable']
+	vegetablesDict = whole['foodDatabase']['food']['vegetables']['vegetable']
 	vegetables = []
 	for v in vegetablesDict:
 		new_vegetable=create_vegetable(v)
@@ -94,7 +94,7 @@ def get_all_vegetables():
 
 def get_previous_bag():
 	whole = objectifyWholeDB('database.xml')
-	bagDict = whole['baghistory']['bag'][0]
+	bagDict = whole['foodDatabase']['baghistory']['bag'][0]
 	bag = Bag()
 	bag.price = float(bagDict['price'])
 
@@ -112,7 +112,7 @@ def get_previous_bag():
 
 def get_all_recipes():
 	whole = objectifyWholeDB('database.xml')
-	repicesDict = whole['recipes']['recipe']
+	repicesDict = whole['foodDatabase']['recipes']['recipe']
 	recipes = []
 	for r in repicesDict:
 		new_recipe = Recipe()
@@ -125,7 +125,7 @@ def get_all_recipes():
 
 def get_all_xmas_recipes():
 	whole = objectifyWholeDB('database.xml')
-	repicesDict = whole['xMasRecipes']['recipe']
+	repicesDict = whole['foodDatabase']['xMasRecipes']['recipe']
 	recipes = []
 	for r in repicesDict:
 		new_recipe = Recipe()
@@ -135,3 +135,23 @@ def get_all_xmas_recipes():
 			new_recipe.ingredients.append(ingredient)
 		recipes.append(new_recipe)
 	return recipes
+
+def addNewBagIntoDatabase(bag):
+	modifiedBag = prepareBagForConversion(bag)
+	newDatabaseDict = objectifyWholeDB('database.xml')
+	newDatabaseDict['foodDatabase']['baghistory']['bag'].insert(0, modifiedBag)
+	newDatabaseXML = xmltodict.unparse(newDatabaseDict)
+	databaseFile = open("database.xml", "w")
+	databaseFile.write(newDatabaseXML)
+	databaseFile.close()
+
+def prepareBagForConversion(bag):
+	modifiedBag = {}
+	modifiedBag['foodItems'] = {}
+	modifiedBag['foodItems']['fruitItem'] = bag.fruit.name
+	vegetables = []
+	for i in range(len(bag.vegetables)):
+		vegetables.append(bag.vegetables[i].name)
+	modifiedBag['foodItems']['vegetableItem'] = vegetables
+	modifiedBag['price'] = bag.price
+	return modifiedBag

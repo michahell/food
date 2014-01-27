@@ -5,6 +5,7 @@ Michael Trouw
 '''
 
 execfile('rules.py')
+execfile('databaseInterface.py')
 
 def create_configurations(bag_type):
 
@@ -22,3 +23,7 @@ def create_configurations(bag_type):
 	print "Ordered set of optimal bags: " + str(len(bags))
 
 	return bags
+
+def addNewBag(bag):
+	addNewBagIntoDatabase(bag)
+
