@@ -7,7 +7,7 @@ Michael Trouw
 import itertools
 
 execfile('databaseInterface.py')
-execfile('utilities.py')
+execfile('helperFunctions.py')
 
 number_of_products = 5
 best_bags_count=5
@@ -137,10 +137,10 @@ def get_often_used_count(bag):
                         often_count += 1
 	if is_often_used(bag.fruit):
 		often_count+=1
-        if often_count==1:
-		return 1
-	else:
-		return 1/(1+abs(often_count-1))
+#        if often_count==1:
+#		return 1
+#	else:
+	return 1/(1+abs(often_count-1))
 
 
 def is_forgotten_bag(bag):

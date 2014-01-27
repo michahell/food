@@ -4,7 +4,7 @@ Emanuele Crosato
 Michael Trouw
 '''
 
-execfile('rules.py')
+execfile('rulesProcessing.py')
 execfile('databaseInterface.py')
 
 def create_configurations(bag_type):
