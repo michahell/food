@@ -4,9 +4,13 @@ Emanuele Crosato
 Michael Trouw
 '''
 
-execfile('rulesProcessing.py')
+''' This file implements the system controller level '''
+
+# Add the needed files to use their functionalities
+execfile('rulesProcessing.py') 
 execfile('databaseInterface.py')
 
+# Create the set of optimal configurations
 def create_configurations(bag_type):
 
 	bags=generate_all_possible_bags(bag_type) # generate all the possible bags of 4 vegetables and 1 fruit which don't contain items from the previous week
@@ -22,8 +26,9 @@ def create_configurations(bag_type):
 	bags=apply_preferences(bags,bag_type) # apply the preference rules to order the bag collection
 	print "Ordered set of optimal bags: " + str(len(bags))
 
-	return bags
+	return bags # Return the final set of bags to the view level
 
+# Add bag to the database's bag history
 def addNewBag(bag):
 	addNewBagIntoDatabase(bag)
 

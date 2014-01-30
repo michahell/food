@@ -1,14 +1,17 @@
 from operator import itemgetter
 
-import time
+import time # Import a time module for determining the current season
 
-def get_price(product):
+# Get a product price
+def get_price(product): # returns -> float
 	return float(product.price)
 
+# Check if product is often-used
 def is_often_used(product): # returns -> int ( 0 / 1 )
 	often = 1 if product.oftenUsed is True else 0
 	return often					
 
+# Check if a product is seasonal
 def is_seasonal(product): # returns -> boolean
 	seasonal = False
 	# if the product has 4 seasons it is by definition not seasonal!
@@ -32,30 +35,38 @@ def is_seasonal(product): # returns -> boolean
 
 	return seasonal
 
+# Check if a product is 'forgotten'
 def is_forgotten(product): # returns -> int ( 0 / 1 )
 	forgotten = 1 if product.forgotten is True else 0
 	return forgotten 					
 
+# Get a color of a product
 def get_color(product): # returns -> string
 	return product.color
 
+# Get perishability level of a product
 def get_perishability(product): # returns -> string
 	return product.perishability
 
+# Get locality level of a product
 def get_locality(product): # returns -> string
 	return product.origin
 
+# Check if a product is easy to cook 
 def get_easy_to_cook(product): # returns -> int
 	return product.easyToPrepare
 
+# Get the number of pieces for a product
 def get_piece_size(product): # returns -> int
 	return product.pieces
 
+# Remove an item (bag object) by its name
 def removeItemByName(name, items):
 	for i in items:
 		if i.name == name:
 			items.remove(i)
 
+# Get the 5 best bags in order of decreasing grading score
 def getBestBags(bags, ordering, n):
 	backupBags = list(bags)
 	backupOrdering = list(ordering)

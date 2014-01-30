@@ -4,11 +4,15 @@ Emanuele Crosato
 Michael Trouw
 '''
 
+''' This file implements the application of the rules and the weighting models '''
+
 import itertools
 
+# Use functions from the following files
 execfile('databaseInterface.py')
 execfile('helperFunctions.py')
 
+# Global variables
 number_of_products = 5
 best_bags_count=5
 
@@ -16,21 +20,22 @@ best_bags_count=5
 
 def generate_all_possible_bags(bag_type): # generate all the possible bags of 4 vegetables and 1 fruit which don't contain items from the previous week
 
-	fruits = get_all_fruits()
-	vegetables = get_all_vegetables()
+	fruits = get_all_fruits() # Get all the fruit objects
+	vegetables = get_all_vegetables() # Get all the vegetable objects
 
 	if bag_type==0: # if the bag is normal, take into account the previous bag
-		last_bag = get_previous_bag()
+		last_bag = get_previous_bag() # Get the previous bag object
 		last_fruit=last_bag.fruit
-		removeItemByName(last_fruit.name,fruits)
+		removeItemByName(last_fruit.name,fruits) # Remove the previous bag fruit from the current set of possibilities
 		last_vegetables=last_bag.vegetables
-		for item in last_vegetables: # This for loop is used to remove the fruits and the vegetables from the previous week from the current collections of possible items
+		for item in last_vegetables: # Remove the vegetables from the previous week from the current collection of possible items
 			removeItemByName(item.name,vegetables)
 	
 	### Generate all the possible crates with 4 vegetables and 1 fruit
 
 	bags = []
-	vegetable_combinations = itertools.combinations(vegetables, 4)
+	vegetable_combinations = itertools.combinations(vegetables, 4) # Generate all vegetable combinations
+	# Generate all vegetable,fruit combinations
 	for vc in vegetable_combinations:
 		for f in fruits:
 			newbag=Bag()
@@ -40,7 +45,7 @@ def generate_all_possible_bags(bag_type): # generate all the possible bags of 4 
 				newbag.vegetables.append(product)
 			newbag.price=get_bag_price(vc,f)
 			bags.append(newbag)
-	return bags
+	return bags # Return the set of all possible bags
 
 ##############################################################################################################
 
@@ -48,7 +53,7 @@ def apply_compulsory(bags): # apply the compulsory rules to filter the invalid b
 	for bag in bags: # check the price constraint
 		if bag.price > 5 or bag.price < 4:
 			bags.remove(bag)
-	return bags
+	return bags # Return the valid set of bags
 
 ##############################################################################################################
 
@@ -65,7 +70,7 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 		quality_counter[count] = get_seasonal_products_count(bag) * weight_season
 		count += 1	
 	maximum=max(quality_counter)
-
+	# Scale by the maximum value (to get a value between 0 and 1)
 	count=0
 	for bag in bags:
                 quality_counter[count] /= maximum
@@ -92,7 +97,7 @@ def apply_selection(bags): # apply the selection rules to filter the bags furthe
 		if overall_max - quality_counter[count] < 0.2: # if the bag is sufficiently close to the optimal one, add it to the selected subset
 			new_bags.append(bags[count])
 
-	return new_bags
+	return new_bags # Return the optimal filtered set of bags
 
 ##############################################################################################################
 
@@ -119,10 +124,11 @@ def apply_preferences(bags,bag_type): # apply the preference rules to order the 
 	# Order the bags based on their 'ordering_number' value
 	bags = getBestBags(bags, ordering_number, best_bags_count)
 
-	return bags
+	return bags # Return an ordered list of 5 best scoring bag objects
 
 ##################################### END OF THE MAIN FUNCTIONS ##############################################
 
+# Get the total price of a bag
 def get_bag_price(vegetables,fruit):
 	overall_price=0.0
 	for item in vegetables:
@@ -130,6 +136,7 @@ def get_bag_price(vegetables,fruit):
 	overall_price+=fruit.price
 	return overall_price
 
+# Get the number of often-used products
 def get_often_used_count(bag):
         often_count = 0
         for item in bag.vegetables:
@@ -137,9 +144,9 @@ def get_often_used_count(bag):
                         often_count += 1
 	if is_often_used(bag.fruit):
 		often_count+=1
-	return 1/(1+abs(often_count-1))
+	return 1/(1+abs(often_count-1)) # Use a formula to scale the attrubute value between 0 and 1
 
-
+# Check if bag is forgotten (contains 1 or 2 forgotten items)
 def is_forgotten_bag(bag):
 	forgotten_count=0
 	for item in bag.vegetables:
@@ -149,6 +156,7 @@ def is_forgotten_bag(bag):
 	else:
 		return False
 
+# Get the number of seasonal products for a bag
 def get_seasonal_products_count(bag):
 	seasonal_count = 0
 	for item in bag.vegetables:
@@ -156,22 +164,27 @@ def get_seasonal_products_count(bag):
 			seasonal_count += 1
 	return seasonal_count
 
+# Get a score for combinability in recipes for a bag (normal bag scenario)
 def get_recipe_score(bag):
 	score=0.0
  	for veg in bag.vegetables:
 		score+=len(veg.recipes)
+	# Scale the score between 0 and 1
 	if score != 0.0:
 		score = 1-1/score
 	return score
 
+# Get a score for combinability in recipes for a bag (christmas bag scenario)
 def get_xmas_recipe_score(bag):
 	score=0.0
  	for veg in bag.vegetables:
 		score+=len(veg.xmasRecipes)
+	# Scale between 0 and 1
 	if score != 0.0:
 		score = 1-1/score
 	return score
 
+# Get the score for a local products in a bag (maximum score is 20)
 def get_locality_count(bag):
 	locality_count=0
 	for item in bag.vegetables:
@@ -196,8 +209,9 @@ def get_locality_count(bag):
 		loc_coef=1
 	locality_count+=loc_coef
 
-	return locality_count
+	return locality_count 
 
+# Get the perishability score for a bag (maximum 15)
 def get_perishability_count(bag):
 	perish_count=0
 	for item in bag.vegetables:
@@ -220,6 +234,7 @@ def get_perishability_count(bag):
 
 	return perish_count
 
+# Get the number of products which are easy to cook (maximum 5)
 def get_easy_to_cook_count(bag):
 	easy_count=0
 	for item in bag.vegetables:
@@ -227,6 +242,7 @@ def get_easy_to_cook_count(bag):
 	easy_count+=get_easy_to_cook(bag.fruit)
 	return easy_count
 
+# Get the number of pieces in total for a bag (minimum 5)
 def get_piece_size_count(bag):
 	pieces_count=0
 	for item in bag.vegetables:
@@ -234,6 +250,7 @@ def get_piece_size_count(bag):
 	pieces_count+=int(get_piece_size(bag.fruit))
 	return pieces_count
 
+# Get the number of colors (colorfulness) for a bag (maximum 5)
 def get_color_count(bag):
 	colors=[]
 	for item in bag.vegetables:

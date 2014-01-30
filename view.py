@@ -4,8 +4,11 @@ Emanuele Crosato
 Michael Trouw
 '''
 
-execfile('controller.py')
+''' This file implements the user interface '''
 
+execfile('controller.py') # Use the functionality of controller.py
+
+# Print the bag contents on the terminal screen
 def print_bag(bag):
 	s=""
 	for item in bag.vegetables:
@@ -13,10 +16,13 @@ def print_bag(bag):
 	s+=bag.fruit.name
 	print s
 
+#################### Main program #################################################################
+
+# Ask the user to choose a bag type
 bag_type=raw_input("\nDear customer, \nWelcome to the f00d KBS. \n\nPlease select the type of bag (enter 0 or 1):\n0 - Normal bag\n1 - Christmas special bag\n")
 
 bag_type=int(bag_type)
-bags=create_configurations(bag_type)
+bags=create_configurations(bag_type) # Call the controller function to create optimal configurations
 
 print "Final set of bags:\n"
 
@@ -27,7 +33,8 @@ for b in bags:
 	print_bag(b)
 	count+=1
 
+# Ask the user the choose a bag from the offered few
 chosen_bag=raw_input("\nPlease select your bag (enter 1-5):")
-print "\nYou chose bag number " + chosen_bag + "! This bag is stored in the database." # TODO: Instead of this, insert the new bag in the DB!!!
+addNewBag(bags[int(chosen_bag)-1]) # Add the bag to the db and notify the user
+print "\nYou chose bag number " + chosen_bag + "! This bag is stored in the database."
 
-addNewBag(bags[int(chosen_bag)-1])
