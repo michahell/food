@@ -107,8 +107,8 @@ def apply_preferences(bags,bag_type): # apply the preference rules to order the 
 	if bag_type==0: # normal bag
 		for bag in bags:	
 			ordering_number[count] = \
-			weight_high * (get_locality_count(bag) / 20 + get_perishability_count(bag)/15 + get_recipe_score(bag)) + \
-			weight_medium * (get_easy_to_cook_count(bag) / 5) + \
+			weight_high * (get_locality_count(bag) / (4*number_of_products) + get_perishability_count(bag)/(3*number_of_products) + get_recipe_score(bag)) + \
+			weight_medium * (get_easy_to_cook_count(bag) / number_of_products) + \
 			weight_low * (number_of_products / get_piece_size_count(bag) + get_color_count(bag) / number_of_products)
 	else: # christmas bag -> use only recipes, color and pieces
 		for bag in bags:	
@@ -137,9 +137,6 @@ def get_often_used_count(bag):
                         often_count += 1
 	if is_often_used(bag.fruit):
 		often_count+=1
-#        if often_count==1:
-#		return 1
-#	else:
 	return 1/(1+abs(often_count-1))
 
 
